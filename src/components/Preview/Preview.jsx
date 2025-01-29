@@ -1,6 +1,6 @@
 /** @format */
-
-import React from "react";
+import PropTypes from "prop-types";
+// import React from "react";
 import { marked } from "marked";
 
 marked.setOptions({
@@ -32,10 +32,13 @@ const Preview = ({ content }) => {
 			<article
 				id="preview"
 				data-testid="preview"
-				className="prose prose-slate prose-h1:text-3xl prose-h2:text-2xl prose-h3:text-xl p-4 border border-gray-300 rounded-lg shadow-sm min-h-[24rem]"
+				className="prose prose-slate prose-h1:text-3xl prose-h2:text-2xl prose-h3:text-xl p-4 border border-gray-300 rounded-lg shadow-sm min-h-[24rem] bg-fuchsia-200"
 				dangerouslySetInnerHTML={createMarkup()}
 			/>
 		</div>
 	);
+};
+Preview.propTypes = {
+	content: PropTypes.string.isRequired,
 };
 export default Preview;

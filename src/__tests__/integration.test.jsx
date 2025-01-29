@@ -1,6 +1,6 @@
 /** @format */
 
-import React from "react";
+// import React from "react";
 import { describe, test, expect } from "@jest/globals";
 import { render, screen } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
@@ -85,4 +85,15 @@ describe("Markdown Previewer Integration", () => {
 		expect(previewElement.innerHTML).toContain('<img src="https://reactjs.org/logo-og.png"');
 		expect(previewElement.innerHTML).toContain("<strong>bold text</strong>");
 	});
+
+  test("renders line breaks correctly", async () => {
+    render(<App />);
+    const editorElement = screen.getByRole("textbox", { id: "editor" });
+    const previewElement = screen.getByTestId("preview");
+  
+    await userEvent.clear(editorElement);
+    await userEvent.type(editorElement, "First line\nSecond line");
+    
+    expect(previewElement.innerHTML).toContain("First line<br>Second line");
+  });
 });
