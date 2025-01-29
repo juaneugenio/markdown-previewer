@@ -32,7 +32,7 @@ const Preview = ({ content }) => {
 			<article
 				id="preview"
 				data-testid="preview"
-				className="prose prose-slate prose-h1:text-3xl prose-h2:text-2xl prose-h3:text-xl p-4 border border-gray-300 rounded-lg shadow-sm min-h-[24rem] bg-fuchsia-200"
+				className="prose prose-slate prose-h1:text-3xl prose-h2:text-2xl prose-h3:text-xl p-4 border border-gray-300 rounded-lg shadow-sm min-h-[24rem] bg-fuchsia-200 prose-li:marker:text-blue-400 prose-blockquote:border-blue-400"
 				dangerouslySetInnerHTML={createMarkup()}
 			/>
 		</div>
