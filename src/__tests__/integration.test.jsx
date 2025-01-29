@@ -5,6 +5,7 @@ import { describe, test, expect } from "@jest/globals";
 import { render, screen } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 import App from "../App";
+import { DEFAULT_MARKDOWN } from "../constants/defaultMarkdown";
 
 describe("Markdown Previewer Integration", () => {
   test("renders GitHub flavored markdown elements", async () => {
@@ -63,4 +64,25 @@ describe("Markdown Previewer Integration", () => {
     await userEvent.type(editorElement, "`code`");
     expect(previewElement.innerHTML.trim()).toBe("<p><code>code</code></p>");
   });
+
+  // Story 5
+  test("loads with default markdown content", () => {
+		render(<App />);
+		const editorElement = screen.getByRole("textbox", { id: "editor" });
+		const previewElement = screen.getByTestId("preview");
+
+		// Verify editor has default content
+		expect(editorElement.value).toBe(DEFAULT_MARKDOWN);
+
+		// Verify preview renders default content
+		expect(previewElement.innerHTML).toContain("<h1>Welcome to my React Markdown Previewer!</h1>");
+		expect(previewElement.innerHTML).toContain("<h2>This is a sub-heading...</h2>");
+		expect(previewElement.innerHTML).toContain('<a href="https://github.com/juaneugenio">');
+		expect(previewElement.innerHTML).toContain("<code>inline code</code>");
+		expect(previewElement.innerHTML).toContain("<pre><code>");
+		expect(previewElement.innerHTML).toContain("<li>First item in a list</li>");
+		expect(previewElement.innerHTML).toContain("<blockquote>");
+		expect(previewElement.innerHTML).toContain('<img src="https://reactjs.org/logo-og.png"');
+		expect(previewElement.innerHTML).toContain("<strong>bold text</strong>");
+	});
 });
