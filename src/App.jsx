@@ -1,7 +1,18 @@
 import './App.css'
+import React from 'react';
 import Editor from './components/Editor/Editor'  // Correct import path
+import Preview from './components/Preview/Preview';
 import  { useState } from 'react';
+import { marked } from 'marked';
 
+
+marked.setOptions({
+	breaks: true, // Permite saltos de línea
+	gfm: true, // GitHub Flavored Markdown
+	headerIds: true, // Genera IDs para headers
+	mangle: false, // No modifica los textos
+	smartLists: true, // Mejora el formato de listas
+});
 
 function App() {
   const [markdownText, setMarkdownText] = useState("")
@@ -12,6 +23,7 @@ function App() {
           Markdown Previewer
         </h1>
         <Editor value={markdownText} onChange={setMarkdownText}/>
+        <Preview content={markdownText}/>
       </div>
     </div>
   )

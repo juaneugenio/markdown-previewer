@@ -1,3 +1,20 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+/* Estilos específicos para markdown */
+.prose h1 {
+  font-size: 2.25rem;
+  font-weight: bold;
+  margin-bottom: 1rem;
+}
+
+.prose h2 {
+  font-size: 1.875rem;
+  font-weight: bold;
+  margin-bottom: 0.875rem;
+}
+
+.prose p {
+  margin-bottom: 1rem;
+}
